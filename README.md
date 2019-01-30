@@ -37,8 +37,6 @@ Note, that some features are more difficult than others, and your "score" is not
 
 ## submission instructions
 
-Create a docker file for your API and push it to a public image repository.  Send instructions for how to run it.
-
 Zip all of your code and email it to us, or create a fork of this git repo and share.
  
 Also, somewhere include a list of what features you implemented, or if you did the freestyle, describe the features you came up with.  Add any comments or things you want the reviewer to consider when looking at your submission.  You don't need to be too detailed, as there will likely be a review done with you, where you can explain what you've done.
