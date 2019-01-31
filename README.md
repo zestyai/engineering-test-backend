@@ -18,12 +18,12 @@ In the test database, there is a single table called `properties` (with 5 sample
 
 Your goal is to create an API in Python that can find and manipulate images and/or geographical data.
 
-There are several different options for what exact features you want to implement in the API.  You can pick whichever ones you think you can do best.  The goal is to do as many as you can complete in **2 hours**. 
+There are several different options for what exact features you want to implement in the API.  You can pick whichever ones you think you can do best.  The goal is to do as many as you can complete in **4 hours**. 
 
 Note that some features are more difficult than others, and you will be evaluated on more than just the number of features completed.  Quality is preferred over quantity.  Comment your code well and be prepared to defend any decisions you made.  
 
 ### feature list
-(not all of these must be implemented - select the ones you think you can do in **2 hours**)
+(not all of these must be implemented - select the ones you think you can do in **4 hours**)
 
 * **Display:** API endpoint to display image by id.  Take an id as input, find the image url from the database, download it from google cloud storage and return binary image as output.
 * **Find:** API endpoint to search properties within a geographical area.  Take a geojson object and a distance (in meters) as inputs. Return all property ids that are with in the input distance of the input geojson. Use the `geocode_geo` field of the property table for your query.
