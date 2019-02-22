@@ -8,7 +8,7 @@ You will need to install docker and docker-compose to run database for the examp
 Your code should be in python 3.x.  If you want to run/test your project locally, you may need to install this.  But ultimately, your release should be in docker.  So it it is not required.
 
 ### database startup
-From the repo root folder, run `docker-compose up -d` to start the PostgreSQL database need for this example.  The database server will be exposed on port 5559.  If this is not available on your computer, feel free to change the port in the docker-compose.yml file.
+From the repo root folder, run `docker-compose up -d` to start the PostgreSQL database need for this example.  The database server will be exposed on port 5555.  If this is not available on your computer, feel free to change the port in the docker-compose.yml file.
 
 In the test database, there is a single table called `properties` (with 5 sample rows), where each row represents a property or address.  There are three geography* fields and one field with an image url on google cloud storage.
 
