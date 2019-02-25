@@ -16,7 +16,7 @@ In the test database, there is a single table called `properties` (with 5 sample
 
 ## assignment
 
-Your goal is to create an API in Python that can find and manipulate images and/or geographical data.
+Your goal is to create a restful API in Python that can find and manipulate images and/or geographical data.
 
 There are several different options for what exact features you want to implement in the API.  You can pick whichever ones you think you can do best.  The goal is to do as many as you can complete in **4 hours**. 
 
