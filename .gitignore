@@ -3,3 +3,4 @@ _test
 _submissions/
 *env*
 __pycache__/
+*.pyc

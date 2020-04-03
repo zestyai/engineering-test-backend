@@ -1,5 +1,5 @@
 import flask_sqlalchemy
-from routes import db
+from shared_resources import db
 from geoalchemy2 import Geography
 
 class Property(db.Model):
