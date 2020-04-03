@@ -16,7 +16,7 @@ db = SQLAlchemy(app)
 def landing():
 	return ""
 
-@app.route('/display/{property_id}', methods=['GET'])
+@app.route('/display/<string:property_id>', methods=['GET'])
 def display(property_id):
 	"""
 	Display an image by property ID.
@@ -29,7 +29,7 @@ def display(property_id):
 	# (parcel_geo and buildings_geo fields in the database) on the image.
 	# You can optionally add parameters for the color of each overlay, or use a default for each.
 
-	pass
+	return str(property_id)
 
 @app.route('/find', methods=['GET'])
 def find():
@@ -41,7 +41,7 @@ def find():
 	# Use the geocode_geo field of the property table for your query.
 	pass
 
-@app.route('/statistics/{property_id}/{distance}', methods=['GET'])
+@app.route('/statistics/<string:property_id>/<int:distance>', methods=['GET'])
 def statistics(property_id, distance):
 	"""
 	Calculate geographic data about all properties within a given distance from a reference property.
