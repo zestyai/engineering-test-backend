@@ -7,7 +7,7 @@ Python 3 to run this in. You can find instructions for setting that up here: htt
 
 ### Prerequisites
 
-The required packages are listed in requirements.txt. You can install them by running (make sure your virtual environment is activate first if you are using one):
+The required packages are listed in requirements.txt. You can install them by running the following command (make sure your virtual environment is activate first if you are using one):
 
 ```
 pip install -r requirements.txt
@@ -17,6 +17,8 @@ You will also need to have Docker installed and run `docker-compose up` to insta
 
 ### What this code does
 This is a simple flask app that can retrieve an image of a property. There is one route (`/display/<property_id>`) and one model representing the `properties` table.
+
+I've stubbed out a few other routes, but not implemented them.
 
 
 ### What is left to do
@@ -32,4 +34,4 @@ The app can be run with the following terminal command:
 ```
 python routes.py
 ```
-When the app is running you can visit http://127.0.0.1:5000/display/[property_id] in your browser (you will have to supply a property id) or you can use `curl` or similar to make a request to the display route.
+When the app is running you can visit `http://127.0.0.1:5000/display/<property_id>` in your browser (you will have to supply a property id). When you visit this route it will download the image. This could be changed to directly display the image, but the instructions were to "return the image in a format suitable for display in a browser", so this returns a JPEG.
