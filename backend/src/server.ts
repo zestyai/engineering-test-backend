@@ -1,5 +1,5 @@
 import { Express } from 'express';
-import { initDbConnection } from './database';
+import { initDbConnection } from './db/client';
 
 export async function initServer(app: Express, port: number): Promise<void> {
   try {

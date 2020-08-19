@@ -47,6 +47,24 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "GET property",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/property/622088210a6f43fca2a1824e8610df03",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"property",
+								"622088210a6f43fca2a1824e8610df03"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"event": [
@@ -76,7 +94,7 @@
 	],
 	"variable": [
 		{
-			"id": "42f238a5-8bca-4d74-8f27-6d5443711454",
+			"id": "ca9c4966-62d5-4c2a-8c57-9654b5fa49fd",
 			"key": "URL",
 			"value": "http://localhost:3030"
 		}
