@@ -3,6 +3,7 @@ import env from 'env-var';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import { initServer } from './server';
+import { findAllProperties } from './database';
 
 const portNumber: number = env.get('PORT').required().asPortNumber();
 
@@ -13,6 +14,11 @@ async function initApp(): Promise<void> {
   app.use(bodyParser.json());
 
   app.get('/', (req, res) => res.send('Spicy.ai API'));
+
+  app.get('/property', async (req, res) => {
+    const properties = await findAllProperties();
+    res.send(properties);
+  });
 
   await initServer(app, portNumber);
 }
