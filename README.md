@@ -5,6 +5,29 @@
 This project is a fork of the Zesty.ai engineering test (back-end).
 The original assignment instructions can be found in [assignment.md](assignment.md).
 
+## Implemented features
+
+- Display:
+
+  - `GET /property/622088210a6f43fca2a1824e8610df03/image`
+
+- Display Plus:
+
+  - `GET /property/622088210a6f43fca2a1824e8610df03/image?parcelOverlay=true&buildingOverlay=true`
+
+- Find:
+
+  - `GET /property?geoJson={"type":"Point","coordinates":[-80.0782213,26.8849731]}&distance=120000`
+
+- Freestyle:
+
+  - Bonus endpoint: Get property (JSON)
+    - `GET /property/622088210a6f43fca2a1824e8610df03`
+  - Bonus endpoint: Find all properties (JSON)
+    - `GET /property`
+  - Bonus "Display Plus" param: file type
+    - `GET /property/622088210a6f43fca2a1824e8610df03/image?parcelOverlay=true&fileType=png`
+
 ## Setup
 
 You can start Spicy.ai using either of these three methods:
