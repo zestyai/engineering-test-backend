@@ -65,6 +65,25 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "GET property image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/property/622088210a6f43fca2a1824e8610df03/image",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"property",
+								"622088210a6f43fca2a1824e8610df03",
+								"image"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"event": [
@@ -94,7 +113,7 @@
 	],
 	"variable": [
 		{
-			"id": "ca9c4966-62d5-4c2a-8c57-9654b5fa49fd",
+			"id": "4f513a73-0f86-4de0-8475-5673544d84bc",
 			"key": "URL",
 			"value": "http://localhost:3030"
 		}
