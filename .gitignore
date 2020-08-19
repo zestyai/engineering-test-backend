@@ -3,4 +3,6 @@ _test
 _submissions/
 .idea
 **/node_modules/
+**/src/**/*.js
+**/src/**/*.js.map
 yarn-error.log
