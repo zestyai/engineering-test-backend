@@ -1,0 +1,43 @@
+module.exports = {
+  root: true,
+  ignorePatterns: ['**/src/**/*.js', '**/node_modules'],
+  env: {
+    commonjs: true,
+    es2020: true,
+  },
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 2020,
+  },
+  plugins: ['@typescript-eslint'],
+  rules: {
+    '@typescript-eslint/no-use-before-define': ['error', { functions: false }],
+    '@typescript-eslint/ban-ts-ignore': 'off',
+    '@typescript-eslint/no-inferrable-types': 'off',
+    '@typescript-eslint/explicit-function-return-type': [
+      'warn',
+      {
+        allowTypedFunctionExpressions: true,
+        allowHigherOrderFunctions: true,
+        allowExpressions: true,
+      },
+    ],
+    '@typescript-eslint/no-empty-function': 'off',
+    '@typescript-eslint/no-var-requires': 'warn',
+    '@typescript-eslint/no-namespace': 'warn',
+    '@typescript-eslint/no-empty-interface': 'warn',
+    '@typescript-eslint/no-explicit-any': 'warn',
+    '@typescript-eslint/interface-name-prefix': 'off',
+    'no-unused-vars': 'warn',
+    'no-use-before-define': ['error', { functions: false }],
+    'no-case-declarations': 'warn',
+    'no-async-promise-executor': 'warn',
+    'no-useless-escape': 'warn',
+    'no-fallthrough': 'warn',
+    'no-redeclare': 'warn',
+    'no-empty': 'warn',
+    'no-irregular-whitespace': 'warn',
+    'no-duplicate-imports': 'error',
+  },
+};

@@ -1,3 +1,6 @@
 *.iml
 _test
 _submissions/
+.idea
+**/node_modules/
+yarn-error.log
