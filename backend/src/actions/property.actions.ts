@@ -1,12 +1,13 @@
-import { createCanvas } from 'canvas';
+// import { createCanvas } from 'canvas';
 import { Property } from '../models/Property';
 import { downloadFile } from '../utils/files';
-import { drawImage, drawOverlay, ImageFileType, toImageBuffer } from '../utils/images';
+// import { drawImage, drawOverlay, ImageFileType, toImageBuffer } from '../utils/images';
 
 export async function downloadPropertyImage(property: Property): Promise<Buffer> {
   return downloadFile(property.image_url);
 }
 
+/* TODO
 export function transformImage(
   property: Property,
   imageFile: Buffer,
@@ -34,3 +35,4 @@ export function transformImage(
 
   return toImageBuffer(canvas, fileType);
 }
+*/
