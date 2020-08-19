@@ -1,0 +1,85 @@
+{
+	"info": {
+		"_postman_id": "3fda4941-fe80-4aed-9f4b-2f4cd5dcd693",
+		"name": "Spicy.ai",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "root",
+			"item": [
+				{
+					"name": "GET root",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "/property",
+			"item": [
+				{
+					"name": "FIND properties",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/property",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"property"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "bdc07990-a574-48ee-8a21-b2dc5a1c2013",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d5c34c9b-139b-47c2-a923-ed55ff92ebb0",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"variable": [
+		{
+			"id": "42f238a5-8bca-4d74-8f27-6d5443711454",
+			"key": "URL",
+			"value": "http://localhost:3030"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
