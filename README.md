@@ -59,7 +59,26 @@ cd backend/ && yarn start
 
 #### 3. Run a pre-built Docker image
 
-TODO
+A prebuilt Docker image of the Spicy.ai API is available in this repo's
+[GitHub Packages](https://github.com/pascal-giguere/spicy.ai/packages).
+
+```bash
+docker pull docker.pkg.github.com/pascal-giguere/spicy.ai/spicy-ai-backend:1.0.0
+```
+
+Two environment variables must be set prior to running the API:
+
+```bash
+export DATABASE_URL=postgres://postgres@localhost:5432/zesty
+export PORT=3030
+```
+
+Once the database has been initialized and is running with the config specified in the env var above, start the API's
+Docker image:
+
+```bash
+docker run -e DATABASE_URL -e PORT -p 3031:3030 docker.pkg.github.com/pascal-giguere/spicy.ai/spicy-ai-backend:1.0.0
+```
 
 ## Usage
 
