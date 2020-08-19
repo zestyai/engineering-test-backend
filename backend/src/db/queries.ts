@@ -8,25 +8,28 @@ SELECT
 FROM
   properties
 WHERE
-  id='${propertyId}'
+  id='${propertyId}';
 `;
 
 const findAllPropertiesQuery = `
 SELECT
   *
 FROM
-  properties
+  properties;
 `;
 
 const findPropertiesInRadiusQuery = (lat: number, lon: number, radiusMeters: number) => `
 SELECT
   *
 FROM
-  properties
+  properties p
+WHERE
+  ST_DWithin('SRID=4326;POINT(${lat} ${lon})', p.geocode_geo, ${radiusMeters});
 `;
 
 export async function getProperty(propertyId: string): Promise<Property | undefined> {
-  const result: QueryResult = await getDbClient().query<Property>(getPropertyQuery(propertyId));
+  const query = getPropertyQuery(propertyId);
+  const result: QueryResult = await getDbClient().query<Property>(query);
   return result.rows.length ? result.rows[0] : undefined;
 }
 
@@ -36,6 +39,7 @@ export async function findAllProperties(): Promise<Property[]> {
 }
 
 export async function findPropertiesInRadius(lat: number, lon: number, radiusMeters: number): Promise<Property[]> {
-  const result: QueryResult = await getDbClient().query<Property>(findPropertiesInRadiusQuery(lat, lon, radiusMeters));
+  const query = findPropertiesInRadiusQuery(lat, lon, radiusMeters);
+  const result: QueryResult = await getDbClient().query<Property>(query);
   return result.rows;
 }

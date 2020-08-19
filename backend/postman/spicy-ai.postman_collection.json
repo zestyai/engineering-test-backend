@@ -49,6 +49,33 @@
 					"response": []
 				},
 				{
+					"name": "FIND properies in radius",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/property?geoJson={\"type\":\"Point\",\"coordinates\":[-80.0782213,26.8849731]}&distance=120000",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"property"
+							],
+							"query": [
+								{
+									"key": "geoJson",
+									"value": "{\"type\":\"Point\",\"coordinates\":[-80.0782213,26.8849731]}"
+								},
+								{
+									"key": "distance",
+									"value": "120000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GET property",
 					"request": {
 						"method": "GET",
@@ -113,7 +140,7 @@
 	],
 	"variable": [
 		{
-			"id": "4f513a73-0f86-4de0-8475-5673544d84bc",
+			"id": "7cfb6e18-86e1-4d11-a86d-e37f1a56962d",
 			"key": "URL",
 			"value": "http://localhost:3030"
 		}
