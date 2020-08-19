@@ -11,7 +11,7 @@ The original assignment instructions can be found in [assignment.md](assignment.
 
   - `GET /property/622088210a6f43fca2a1824e8610df03/image`
 
-- Display Plus:
+- Display Plus (WIP):
 
   - `GET /property/622088210a6f43fca2a1824e8610df03/image?parcelOverlay=true&buildingOverlay=true`
 
@@ -25,8 +25,10 @@ The original assignment instructions can be found in [assignment.md](assignment.
     - `GET /property/622088210a6f43fca2a1824e8610df03`
   - Bonus endpoint: Find all properties (JSON)
     - `GET /property`
-  - Bonus "Display Plus" param: file type
-    - `GET /property/622088210a6f43fca2a1824e8610df03/image?parcelOverlay=true&fileType=png`
+  - Bonus Display param: alternate image file type (jpg|png)
+    - `GET /property/622088210a6f43fca2a1824e8610df03/image?fileType=png`
+  - Bonus Display param: resolution (px)
+    - `GET /property/622088210a6f43fca2a1824e8610df03/image?resolution=240`
 
 ## Setup
 

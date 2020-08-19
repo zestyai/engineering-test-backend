@@ -52,6 +52,8 @@ export default function (app: Application) {
       return;
     }
 
+    // TODO call property.actions::transformImage() if Display Plus params are present
+
     const property: Property | undefined = await getProperty(req.params.id);
     if (typeof property === 'undefined') {
       res.status(404).send(`Property '${req.params.id}' not found`);
