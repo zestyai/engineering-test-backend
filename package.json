@@ -9,6 +9,10 @@
   "repository": "https://github.com/pascal-giguere/engineering-test",
   "license": "UNLICENSED",
   "private": true,
+  "scripts": {
+    "start": "PORT=3031 docker-compose up",
+    "build": "PORT=3031 docker-compose up --build"
+  },
   "workspaces": [
     "backend"
   ],

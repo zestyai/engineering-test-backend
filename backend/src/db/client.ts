@@ -1,4 +1,4 @@
-import { Client, QueryResult } from 'pg';
+import { Client } from 'pg';
 import env from 'env-var';
 
 const databaseUrl: string = env.get('DATABASE_URL').required().asUrlString();
@@ -21,9 +21,4 @@ export async function initDbConnection() {
   return new Promise(async (resolve) => {
     await testConnection(resolve);
   });
-}
-
-export async function findAllProperties(): Promise<object[]> {
-  const result: QueryResult = await dbClient.query<any>('SELECT * from properties');
-  return result.rows;
 }

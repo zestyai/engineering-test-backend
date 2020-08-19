@@ -1,6 +1,15 @@
 version: '3'
 
 services:
+  app:
+    build: .
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://postgres:engineTest888@postgres:5432/zesty
+      PORT: 3030
+    ports:
+      - '${PORT}:3030'
   postgres:
     image: mdillon/postgis:9.6
     restart: always
