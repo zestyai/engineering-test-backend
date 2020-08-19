@@ -2,6 +2,7 @@
   <configuration default="false" name="Run Spicy.ai API" type="NodeJSConfigurationType" path-to-js-file="src/index.js" working-dir="$PROJECT_DIR$/backend">
     <envs>
       <env name="PORT" value="3030" />
+      <env name="DATABASE_URL" value="postgres://postgres@localhost:5432/zesty" />
     </envs>
     <method v="2">
       <option name="NpmBeforeRunTask" enabled="true">
