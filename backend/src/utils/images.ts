@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { loadImage, Canvas, CanvasRenderingContext2D } from 'canvas';
 
 export enum ImageFileType {
