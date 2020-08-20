@@ -11,7 +11,7 @@ The original assignment instructions can be found in [assignment.md](assignment.
 
   - `GET /property/622088210a6f43fca2a1824e8610df03/image`
 
-- Display Plus (WIP):
+- Display Plus:
 
   - `GET /property/622088210a6f43fca2a1824e8610df03/image?parcelOverlay=true&buildingOverlay=true`
 
@@ -63,6 +63,8 @@ A prebuilt Docker image of the Spicy.ai API is available in this repo's
 [GitHub Packages](https://github.com/pascal-giguere/spicy.ai/packages).
 
 ```bash
+# If not already done, login to GitHub with your username and a personal access token
+docker login docker.pkg.github.com --username <your_username>
 docker pull docker.pkg.github.com/pascal-giguere/spicy.ai/spicy-ai-backend:1.0.0
 ```
 
@@ -87,5 +89,5 @@ above:
 
 ```bash
 curl http://localhost:3031
-# -> "Spicy.AI API"
+# -> "Spicy.ai API"
 ```

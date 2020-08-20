@@ -2,9 +2,18 @@ import { QueryResult } from 'pg';
 import { getDbClient } from './client';
 import { Property } from '../models/Property';
 
+const SELECT_COLUMNS = `
+id,
+ST_AsGeoJSON(geocode_geo)::json as geocode_geo,
+ST_AsGeoJSON(parcel_geo)::json as parcel_geo,
+ST_AsGeoJSON(building_geo)::json as building_geo,
+image_bounds,
+image_url
+`;
+
 const getPropertyQuery = (propertyId: string) => `
 SELECT
-  *
+  ${SELECT_COLUMNS}
 FROM
   properties
 WHERE
@@ -13,14 +22,14 @@ WHERE
 
 const findAllPropertiesQuery = `
 SELECT
-  *
+  ${SELECT_COLUMNS}
 FROM
   properties;
 `;
 
 const findPropertiesInRadiusQuery = (lat: number, lon: number, radiusMeters: number) => `
 SELECT
-  *
+  ${SELECT_COLUMNS}
 FROM
   properties p
 WHERE

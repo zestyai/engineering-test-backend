@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { GeoJsonPoint } from './models/GeoJson';
+import { GeoJsonPoint } from '../models/GeoJson';
 
 const geoJsonPointSchema: yup.ObjectSchema = yup.object().shape({
   type: yup.string().required().equals(['Point'], 'Only the Point GeoJSON geometry type is supported'),

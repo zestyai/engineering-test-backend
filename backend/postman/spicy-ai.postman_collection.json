@@ -99,7 +99,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/property/622088210a6f43fca2a1824e8610df03/image",
+							"raw": "{{URL}}/property/622088210a6f43fca2a1824e8610df03/image?parcelOverlay=true&buildingOverlay=true&resolution=600&fileType=png",
 							"host": [
 								"{{URL}}"
 							],
@@ -107,6 +107,24 @@
 								"property",
 								"622088210a6f43fca2a1824e8610df03",
 								"image"
+							],
+							"query": [
+								{
+									"key": "parcelOverlay",
+									"value": "true"
+								},
+								{
+									"key": "buildingOverlay",
+									"value": "true"
+								},
+								{
+									"key": "resolution",
+									"value": "600"
+								},
+								{
+									"key": "fileType",
+									"value": "png"
+								}
 							]
 						}
 					},
@@ -140,9 +158,10 @@
 	],
 	"variable": [
 		{
-			"id": "7cfb6e18-86e1-4d11-a86d-e37f1a56962d",
+			"id": "5196759e-6997-4de5-8d69-87ca190a0e1a",
 			"key": "URL",
-			"value": "http://localhost:3030"
+			"value": "http://localhost:3030",
+			"type": "string"
 		}
 	],
 	"protocolProfileBehavior": {}

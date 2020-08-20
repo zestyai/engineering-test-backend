@@ -1,11 +1,24 @@
 import { Application, Request, Response } from 'express';
 import { Property } from '../models/Property';
 import { findAllProperties, findPropertiesInRadius, getProperty } from '../db/queries';
-import { downloadPropertyImage } from '../actions/property.actions';
+import { downloadPropertyImage, transformImage } from '../actions/property.actions';
 import { GeoJsonPoint } from '../models/GeoJson';
-import { isGeoJsonPointValid } from '../validations';
+import {
+  hasBuildingOverlayParam,
+  hasFileTypeParam,
+  hasIdParam,
+  hasParcelOverlayParam,
+  hasResolutionParam,
+  hasSearchParams,
+  parseDistanceParam,
+  parseFileTypeParam,
+  parseGeoJsonParam,
+  parseOverlayParam,
+  parseResolutionParam,
+} from '../validations/parsing';
+import { ImageFileType, mimeTypeForFileType } from '../utils/images';
 
-export default function (app: Application) {
+export default function (app: Application): void {
   app.get('/property', async (req: Request, res: Response) => {
     if (hasSearchParams(req.query)) {
       let geoJsonPoint: GeoJsonPoint;
@@ -52,7 +65,50 @@ export default function (app: Application) {
       return;
     }
 
-    // TODO call property.actions::transformImage() if Display Plus params are present
+    let fileType: ImageFileType = ImageFileType.jpg;
+    let parcelOverlay: boolean = false;
+    let buildingOverlay: boolean = false;
+    let resolution: number = 1250;
+
+    if (hasFileTypeParam(req.query)) {
+      try {
+        fileType = parseFileTypeParam(req.query.fileType);
+      } catch (error) {
+        console.warn(error.message);
+        res.status(400).send('Invalid `fileType` query param');
+        return;
+      }
+    }
+
+    if (hasParcelOverlayParam(req.query)) {
+      try {
+        parcelOverlay = parseOverlayParam(req.query.parcelOverlay);
+      } catch (error) {
+        console.warn(error.message);
+        res.status(400).send('Invalid `parcelOverlay` query param');
+        return;
+      }
+    }
+
+    if (hasBuildingOverlayParam(req.query)) {
+      try {
+        buildingOverlay = parseOverlayParam(req.query.buildingOverlay);
+      } catch (error) {
+        console.warn(error.message);
+        res.status(400).send('Invalid `buildingOverlay` query param');
+        return;
+      }
+    }
+
+    if (hasResolutionParam(req.query)) {
+      try {
+        resolution = parseResolutionParam(req.query.resolution);
+      } catch (error) {
+        console.warn(error.message);
+        res.status(400).send('Invalid `resolution` query param');
+        return;
+      }
+    }
 
     const property: Property | undefined = await getProperty(req.params.id);
     if (typeof property === 'undefined') {
@@ -69,42 +125,18 @@ export default function (app: Application) {
       return;
     }
 
-    res.contentType('image/tiff');
+    const transformedImage: Buffer = await transformImage(
+      property,
+      imageFile,
+      fileType,
+      parcelOverlay,
+      buildingOverlay,
+      resolution
+    );
+
+    const mimeType: string = mimeTypeForFileType(fileType);
+    res.contentType(mimeType);
     res.setHeader('content-disposition', 'inline');
-    res.send(imageFile);
+    res.send(transformedImage);
   });
-}
-
-function hasIdParam(params: { [key: string]: unknown }): params is { id: string } {
-  return typeof params.id === 'string';
-}
-
-function hasSearchParams(params: { [key: string]: unknown }): params is { geoJson: string; distance: string } {
-  return typeof params.geoJson === 'string' && typeof params.distance === 'string';
-}
-
-function parseGeoJsonParam(geoJsonParam: string): GeoJsonPoint {
-  let geoJsonPoint: unknown;
-  try {
-    geoJsonPoint = JSON.parse(geoJsonParam);
-  } catch (error) {
-    throw Error('Invalid JSON object');
-  }
-  if (!isGeoJsonPointValid(geoJsonPoint)) {
-    throw Error('Invalid GeoJSON Point object');
-  }
-  return geoJsonPoint;
-}
-
-function parseDistanceParam(distanceParam: string): number {
-  let distance: number;
-  try {
-    distance = parseFloat(distanceParam);
-    if (!isNaN(distance)) {
-      return distance;
-    }
-  } catch (error) {
-    console.warn(`Failed to parse distance '${distanceParam}'`);
-  }
-  throw Error('Invalid distance param');
 }

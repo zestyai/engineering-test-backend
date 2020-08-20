@@ -1,38 +1,43 @@
-// import { createCanvas } from 'canvas';
+import { createCanvas } from 'canvas';
 import { Property } from '../models/Property';
 import { downloadFile } from '../utils/files';
-// import { drawImage, drawOverlay, ImageFileType, toImageBuffer } from '../utils/images';
+import { drawImage, drawOverlay, ImageFileType, toImageBuffer } from '../utils/images';
+import { coordinatesToPoints } from '../utils/geo';
 
 export async function downloadPropertyImage(property: Property): Promise<Buffer> {
   return downloadFile(property.image_url);
 }
 
-/* TODO
-export function transformImage(
+export async function transformImage(
   property: Property,
   imageFile: Buffer,
-  fileType: ImageFileType = ImageFileType.jpg,
-  parcelOverlay: boolean = false,
-  buildingOverlay: boolean = false,
-  resolution: number = 1250
-): Buffer {
+  fileType: ImageFileType,
+  parcelOverlay: boolean,
+  buildingOverlay: boolean,
+  resolution: number
+): Promise<Buffer> {
   const canvas = createCanvas(resolution, resolution);
   const ctx = canvas.getContext('2d');
 
-  drawImage(ctx, imageFile, resolution);
+  await drawImage(ctx, imageFile, resolution);
 
   if (parcelOverlay) {
-    // TODO convert parcel geo coordinates to image coordinates
-    const polygonPoints: { x: number; y: number }[] = [];
-    drawOverlay(ctx, polygonPoints, 'red');
+    const polygonPoints: { x: number; y: number }[] = coordinatesToPoints(
+      property.parcel_geo.coordinates,
+      property.image_bounds,
+      resolution
+    );
+    drawOverlay(ctx, polygonPoints, '#ffdf3c');
   }
 
   if (buildingOverlay) {
-    // TODO convert building geo coordinates to image coordinates
-    const polygonPoints: { x: number; y: number }[] = [];
-    drawOverlay(ctx, polygonPoints, 'blue');
+    const polygonPoints: { x: number; y: number }[] = coordinatesToPoints(
+      property.building_geo.coordinates,
+      property.image_bounds,
+      resolution
+    );
+    drawOverlay(ctx, polygonPoints, '#ff174e');
   }
 
   return toImageBuffer(canvas, fileType);
 }
-*/

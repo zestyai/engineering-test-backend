@@ -1,4 +1,4 @@
-FROM node:12-alpine
+FROM node:12-slim
 
 RUN mkdir /home/node/app/ && chown -R node:node /home/node/app
 WORKDIR /home/node/app
@@ -11,7 +11,7 @@ COPY --chown=node:node package.json yarn.lock backend/package.json ./
 RUN yarn install
 
 COPY --chown=node:node ./ ./
-RUN cd backend/ && yarn build
+RUN yarn --cwd backend/ build
 
 EXPOSE 3030
 CMD node backend/src/index.js
