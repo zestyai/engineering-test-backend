@@ -1,4 +1,4 @@
-import { Application } from 'express';
+import { Application, Request, Response } from 'express';
 import { Property } from '../models/Property';
 import { findAllProperties, findPropertiesInRadius, getProperty } from '../db/queries';
 import { downloadPropertyImage } from '../actions/property.actions';
@@ -6,7 +6,7 @@ import { GeoJsonPoint } from '../models/GeoJson';
 import { isGeoJsonPointValid } from '../validations';
 
 export default function (app: Application) {
-  app.get('/property', async (req, res) => {
+  app.get('/property', async (req: Request, res: Response) => {
     if (hasSearchParams(req.query)) {
       let geoJsonPoint: GeoJsonPoint;
       let distance: number;
@@ -31,7 +31,7 @@ export default function (app: Application) {
     res.json(allProperties);
   });
 
-  app.get('/property/:id', async (req, res) => {
+  app.get('/property/:id', async (req: Request, res: Response) => {
     if (!hasIdParam(req.params)) {
       res.status(400).send('Missing `id` URL param');
       return;
@@ -46,7 +46,7 @@ export default function (app: Application) {
     res.send(property);
   });
 
-  app.get('/property/:id/image', async (req, res) => {
+  app.get('/property/:id/image', async (req: Request, res: Response) => {
     if (!hasIdParam(req.params)) {
       res.status(400).send('Missing `id` URL param');
       return;

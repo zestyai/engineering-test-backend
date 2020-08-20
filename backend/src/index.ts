@@ -1,4 +1,4 @@
-import express, { Express } from 'express';
+import express, { Express, Request, Response } from 'express';
 import env from 'env-var';
 import cors from 'cors';
 import bodyParser from 'body-parser';
@@ -13,7 +13,7 @@ async function initApp(): Promise<void> {
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
 
-  app.get('/', (req, res) => res.send('Spicy.ai API'));
+  app.get('/', (req: Request, res: Response) => res.send('Spicy.ai API'));
   initPropertyService(app);
 
   await initServer(app, portNumber);
