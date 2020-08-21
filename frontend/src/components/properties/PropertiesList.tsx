@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { PropertiesListItem } from './PropertiesListItem';
-import { Property } from '../../models/Property';
+import { PropertyDisplayItem } from '../../models/Property';
 
 const Container = styled.div`
   max-width: 700px;
@@ -10,14 +10,14 @@ const Container = styled.div`
 `;
 
 type Props = {
-  properties: Property[];
+  properties: PropertyDisplayItem[];
 };
 
 export const PropertiesList = (props: Props) => (
   <Container>
     <div>{`${props.properties.length} properties found:`}</div>
-    {props.properties.map((property: Property, index: number) => (
-      <PropertiesListItem key={index} />
+    {props.properties.map((property: PropertyDisplayItem) => (
+      <PropertiesListItem key={property.id} property={property} />
     ))}
   </Container>
 );

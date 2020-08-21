@@ -27,5 +27,6 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     background-color: white;
     font-family: 'Circular Std', sans-serif;
+    font-weight: bold;
   }
 `;
