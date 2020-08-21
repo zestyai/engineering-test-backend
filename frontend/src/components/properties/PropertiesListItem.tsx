@@ -1,11 +1,18 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { PropertyDisplayItem } from '../../models/Property';
-import { RiskLevel } from '../../utils/risk';
+import { RiskLevel } from '../../models/Risk';
 
 const Container = styled.div`
   display: flex;
   margin: 35px 0;
+`;
+
+const ImageWrapper = styled.div`
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #eee;
 `;
 
 const Image = styled.img`
@@ -23,7 +30,8 @@ const Content = styled.div`
 `;
 
 const LeftColumn = styled.div`
-  padding-left: 35px;
+  padding-left: 40px;
+  width: 280px;
 `;
 
 const NameLabel = styled.div`
@@ -44,6 +52,7 @@ const CoordinatesLabel = styled(Label)`
 `;
 
 const RiskLevelContainer = styled.div`
+  width: 150px;
   padding: 0 30px;
   text-align: center;
 `;
@@ -98,7 +107,9 @@ export const PropertiesListItem = (props: Props) => {
   const { name, latitude, longitude, overlayImageUrl, riskLevel, isFavorite } = props.property;
   return (
     <Container>
-      <Image src={overlayImageUrl} alt='Property' />
+      <ImageWrapper>
+        <Image src={overlayImageUrl} alt='Property' />
+      </ImageWrapper>
       <Content>
         <LeftColumn>
           <NameLabel>{name}</NameLabel>

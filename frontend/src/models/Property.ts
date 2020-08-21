@@ -1,6 +1,7 @@
 import { GeoJsonPoint, GeoJsonPolygon } from './GeoJson';
-import { RiskLevel } from '../utils/risk';
+import { RiskLevel } from './Risk';
 import { imageUrl } from '../utils/image';
+import { generateName, generateRiskLevel } from '../utils/generators';
 
 export interface Property {
   id: string;
@@ -40,11 +41,11 @@ export class PropertyDisplayItem {
 
   public static fromProperty = (property: Property): PropertyDisplayItem => {
     const { id, geocode_geo } = property;
-    const name: string = 'TODO';
+    const name: string = generateName(id);
     const latitude: number = geocode_geo.coordinates[0];
     const longitude: number = geocode_geo.coordinates[1];
     const overlayImageUrl: string = imageUrl(id);
-    const riskLevel: RiskLevel = RiskLevel.spicy;
+    const riskLevel: RiskLevel = generateRiskLevel(id);
     const isFavorite: boolean = false;
     return new PropertyDisplayItem(id, name, latitude, longitude, overlayImageUrl, riskLevel, isFavorite);
   };

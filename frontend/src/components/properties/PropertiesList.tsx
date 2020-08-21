@@ -6,7 +6,13 @@ import { PropertyDisplayItem } from '../../models/Property';
 const Container = styled.div`
   max-width: 700px;
   margin: auto;
-  padding: 40px 0;
+  padding: 60px 0;
+`;
+
+const Label = styled.div`
+  font-weight: 900;
+  font-size: 18px;
+  margin-bottom: 40px;
 `;
 
 type Props = {
@@ -15,7 +21,7 @@ type Props = {
 
 export const PropertiesList = (props: Props) => (
   <Container>
-    <div>{`${props.properties.length} properties found:`}</div>
+    <Label>{`${props.properties.length} properties found:`}</Label>
     {props.properties.map((property: PropertyDisplayItem) => (
       <PropertiesListItem key={property.id} property={property} />
     ))}

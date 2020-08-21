@@ -11143,6 +11143,11 @@ unique-filename@^1.1.1:
   dependencies:
     unique-slug "^2.0.0"
 
+unique-names-generator@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/unique-names-generator/-/unique-names-generator-4.3.0.tgz#34d680c9f25dbf2552437d6ef6cf145ac99916c1"
+  integrity sha512-uNX6jVFjBXfZtsc7B8jVPJ3QdfCF/Sjde4gxsy3rNQmHuWGFarnU7IFGdxZKJ4h4uRjANQc6rG7GiGolRW9fgA==
+
 unique-slug@^2.0.0:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/unique-slug/-/unique-slug-2.0.2.tgz#baabce91083fc64e945b0f3ad613e264f7cd4e6c"
