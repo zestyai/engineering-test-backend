@@ -8,13 +8,14 @@ services:
     environment:
       DATABASE_URL: postgres://postgres:engineTest888@postgres:5432/zesty
       PORT: 3030
+      ENV NODE_OPTIONS: --max_old_space_size=4096
     ports:
       - '${PORT}:3030'
   postgres:
     image: mdillon/postgis:9.6
     restart: always
     ports:
-      - "5555:5432"
+      - '5555:5432'
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: engineTest888
