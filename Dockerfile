@@ -7,7 +7,8 @@ WORKDIR /home/node/app
 USER node
 
 # Start by installing dependencies first to leverage Docker layer caching
-COPY --chown=node:node package.json yarn.lock backend/package.json ./
+COPY --chown=node:node package.json yarn.lock ./
+COPY --chown=node:node backend/package.json backend/
 RUN yarn install
 
 COPY --chown=node:node ./ ./
