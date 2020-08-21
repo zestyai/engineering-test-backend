@@ -8,10 +8,12 @@ USER node
 
 # Start by installing dependencies first to leverage Docker layer caching
 COPY --chown=node:node package.json yarn.lock ./
+COPY --chown=node:node frontend/package.json frontend/
 COPY --chown=node:node backend/package.json backend/
 RUN yarn install
 
 COPY --chown=node:node ./ ./
+RUN yarn --cwd frontend/ build
 RUN yarn --cwd backend/ build
 
 EXPOSE 3030
