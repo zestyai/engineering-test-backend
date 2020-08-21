@@ -4,7 +4,7 @@ import { PropertiesListItem } from './PropertiesListItem';
 import { PropertyDisplayItem } from '../../models/Property';
 
 const Container = styled.div`
-  max-width: 700px;
+  max-width: 660px;
   margin: auto;
   padding: 60px 0;
 `;

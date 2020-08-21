@@ -31,7 +31,7 @@ const Content = styled.div`
 
 const LeftColumn = styled.div`
   padding-left: 40px;
-  width: 280px;
+  width: 240px;
 `;
 
 const NameLabel = styled.div`

@@ -28,5 +28,6 @@ export const GlobalStyle = createGlobalStyle`
     background-color: white;
     font-family: 'Circular Std', sans-serif;
     font-weight: bold;
+    min-width: 700px;
   }
 `;
