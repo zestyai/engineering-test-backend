@@ -14,7 +14,8 @@ export function coordinatesToPoints(
 
   return coordinates[0].map(([lat, lon]) => {
     const x: number = normalize(lat, minLat, maxLat) * multiplier;
-    const y: number = normalize(lon, minLon, maxLon) * multiplier;
+    // Y axis is flipped since <canvas> uses a different coordinates system
+    const y: number = multiplier - normalize(lon, minLon, maxLon) * multiplier;
     return { x, y };
   });
 }
