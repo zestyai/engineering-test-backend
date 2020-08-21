@@ -36,7 +36,7 @@ export async function transformImage(
       property.image_bounds,
       resolution
     );
-    drawOverlay(ctx, polygonPoints, '#ff174e');
+    drawOverlay(ctx, polygonPoints, '#ea5a46');
   }
 
   return toImageBuffer(canvas, fileType);

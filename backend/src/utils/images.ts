@@ -19,7 +19,7 @@ export function drawOverlay(
 ): void {
   ctx.lineWidth = 2;
   ctx.strokeStyle = color;
-  ctx.fillStyle = `${color}40`;
+  ctx.fillStyle = `${color}50`;
   ctx.beginPath();
   for (const point of polygonPoints) {
     ctx.lineTo(point.x, point.y);
