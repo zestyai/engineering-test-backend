@@ -83,7 +83,7 @@ const FavoriteContainer = styled.div<{ isFavorite: boolean }>`
       filter: grayscale(1) opacity(0.3);
 
       &:hover {
-        filter: grayscale(0) opacity(1);
+        filter: grayscale(1) opacity(0.6);
       }
     `}
 `;
@@ -101,6 +101,7 @@ const FavoriteLabel = styled(Label)``;
 
 type Props = {
   property: PropertyDisplayItem;
+  onFavoriteChanged: (isFavorite: boolean) => void;
 };
 
 export const PropertiesListItem = (props: Props) => {
@@ -121,7 +122,7 @@ export const PropertiesListItem = (props: Props) => {
           <RiskLevelValue>{riskLevel}</RiskLevelValue>
           <RiskLevelIcons>{riskLevelEmojis(riskLevel)}</RiskLevelIcons>
         </RiskLevelContainer>
-        <FavoriteContainer isFavorite={isFavorite}>
+        <FavoriteContainer isFavorite={isFavorite} onClick={() => props.onFavoriteChanged(!isFavorite)}>
           <FavoriteIcon>
             <span role='img' aria-label='Favorite'>
               ⭐
@@ -134,7 +135,7 @@ export const PropertiesListItem = (props: Props) => {
   );
 };
 
-export function riskLevelEmojis(riskLevel: RiskLevel): string {
+function riskLevelEmojis(riskLevel: RiskLevel): string {
   switch (riskLevel) {
     case RiskLevel.mild:
       return '🌶';

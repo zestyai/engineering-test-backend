@@ -17,13 +17,18 @@ const Label = styled.div`
 
 type Props = {
   properties: PropertyDisplayItem[];
+  onFavoriteChanged: (propertyId: string, isFavorite: boolean) => void;
 };
 
 export const PropertiesList = (props: Props) => (
   <Container>
     <Label>{`${props.properties.length} properties found:`}</Label>
     {props.properties.map((property: PropertyDisplayItem) => (
-      <PropertiesListItem key={property.id} property={property} />
+      <PropertiesListItem
+        key={property.id}
+        property={property}
+        onFavoriteChanged={(isFavorite: boolean) => props.onFavoriteChanged(property.id, isFavorite)}
+      />
     ))}
   </Container>
 );

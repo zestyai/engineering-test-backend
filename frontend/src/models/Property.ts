@@ -39,14 +39,16 @@ export class PropertyDisplayItem {
     this.isFavorite = isFavorite;
   }
 
-  public static fromProperty = (property: Property): PropertyDisplayItem => {
+  public static fromProperty = (property: Property, favoritePropertyIds: Set<string>): PropertyDisplayItem => {
     const { id, geocode_geo } = property;
+
     const name: string = generateName(id);
     const latitude: number = geocode_geo.coordinates[0];
     const longitude: number = geocode_geo.coordinates[1];
     const overlayImageUrl: string = imageUrl(id);
     const riskLevel: RiskLevel = generateRiskLevel(id);
-    const isFavorite: boolean = false;
+    const isFavorite: boolean = favoritePropertyIds.has(id);
+
     return new PropertyDisplayItem(id, name, latitude, longitude, overlayImageUrl, riskLevel, isFavorite);
   };
 }
