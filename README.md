@@ -49,6 +49,9 @@ From the project root directory:
 PORT=3031 docker-compose up
 ```
 
+_**Note**: This project requires a lot of memory to build. If you get a "Heap out of memory" error at build time, you
+may need to increase your max Docker memory from 2 GB to 4 GB in your Docker settings._
+
 #### 2. Build and run locally (without Docker)
 
 This project requires Node 12, Yarn 1, PostgreSQL 9 and PostGIS 2 to be installed.
@@ -70,7 +73,7 @@ A prebuilt Docker image of the Spicy.ai API is available in this repo's
 ```bash
 # If not already done, login to GitHub with your username and a personal access token
 docker login docker.pkg.github.com --username <your_username>
-docker pull docker.pkg.github.com/pascal-giguere/spicy.ai/spicy-ai-backend:1.1.1
+docker pull docker.pkg.github.com/pascal-giguere/spicy.ai/spicy-ai-fullstack:2.0.0
 ```
 
 Two environment variables must be set prior to running the API:
@@ -84,7 +87,7 @@ Once the database has been initialized and is running with the config specified 
 Docker image:
 
 ```bash
-docker run -e DATABASE_URL -e PORT -p 3031:3030 docker.pkg.github.com/pascal-giguere/spicy.ai/spicy-ai-backend:1.1.1
+docker run -e DATABASE_URL -e PORT -p 3031:3030 docker.pkg.github.com/pascal-giguere/spicy.ai/spicy-ai-fullstack:2.0.0
 ```
 
 ## Usage
