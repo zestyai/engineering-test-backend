@@ -38,7 +38,7 @@ export const PropertiesContainer = (props: Props) => {
         console.error(`Failed to fetch properties: ${error.message}`);
       }
     })();
-  }, []);
+  }, [props.searchParams]);
 
   if (!properties) {
     return (
