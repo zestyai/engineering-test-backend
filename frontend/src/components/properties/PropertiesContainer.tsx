@@ -3,12 +3,13 @@ import styled from 'styled-components';
 import { PropertiesList } from './PropertiesList';
 import { SearchParams } from '../../utils/queryParams';
 import { Property, PropertyDisplayItem } from '../../models/Property';
-import { findAllProperties } from '../../utils/apiClient';
+import { findAllProperties, searchProperties } from '../../utils/apiClient';
 import PuffLoader from 'react-spinners/PuffLoader';
 import { readFavoriteProperties, setFavoriteProperty, unsetFavoriteProperty } from '../../utils/localStorage';
 
-const Loader = styled(PuffLoader)`
-  margin: auto;
+const LoaderContainer = styled.div`
+  width: 60px;
+  margin: 100px auto;
 `;
 
 type Props = {
@@ -24,7 +25,14 @@ export const PropertiesContainer = (props: Props) => {
   useEffect(() => {
     (async () => {
       try {
-        const fetchedProperties: Property[] = await findAllProperties();
+        let fetchedProperties: Property[];
+
+        if (props.searchParams) {
+          const { lat, lon, dist } = props.searchParams;
+          fetchedProperties = await searchProperties(lat, lon, dist);
+        } else {
+          fetchedProperties = await findAllProperties();
+        }
         setProperties(fetchedProperties);
       } catch (error) {
         console.error(`Failed to fetch properties: ${error.message}`);
@@ -33,7 +41,11 @@ export const PropertiesContainer = (props: Props) => {
   }, []);
 
   if (!properties) {
-    return <Loader color='#ea5a46' />;
+    return (
+      <LoaderContainer>
+        <PuffLoader color='#ea5a46' />
+      </LoaderContainer>
+    );
   }
 
   const filteredProperties: Property[] = props.filterFavorites

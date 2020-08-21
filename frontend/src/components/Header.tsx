@@ -9,9 +9,9 @@ const Container = styled.div`
   background-color: white;
 `;
 
-const Banner = styled.div`
+const Banner = styled.div<{ size?: BannerSize }>`
   width: 100%;
-  height: 20px;
+  height: ${(props: { size?: BannerSize }) => (props.size === BannerSize.tall ? '120px' : '20px')};
   background-color: #ea5a46;
 `;
 
@@ -47,8 +47,14 @@ const Item = styled.div<{ selected?: boolean }>`
   }
 `;
 
+export enum BannerSize {
+  short = 'short',
+  tall = 'tall',
+}
+
 type Props = {
   selectedPage?: Page;
+  bannerSize?: BannerSize;
 };
 
 export enum Page {
@@ -83,6 +89,6 @@ export const Header = (props: Props) => (
         </Link>
       )}
     </Items>
-    <Banner />
+    <Banner size={props.bannerSize} />
   </Container>
 );
