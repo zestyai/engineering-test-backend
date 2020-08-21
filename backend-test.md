@@ -1,27 +1,36 @@
-# Spicy.ai - Full Stack
+# Spicy.ai
 
-This project is a fork of the [Zesty.ai engineering test](https://github.com/zestyai/engineering-test).
-It's a modified version of the [`backend-test` branch](https://github.com/pascal-giguere/spicy.ai/tree/backend-test)
-that incorporates features from the
-[Zesty.ai full-stack engineering test](https://github.com/zestyai/engineering-test-fs).
+## Assignment
 
-The back-end test assignment instructions can be found in [backend-assignment.md](backend-assignment.md).
-The full-stack test assignment instructions can be found in [fullstack-assignment.md](fullstack-assignment.md).
+This project is a fork of the Zesty.ai engineering test (back-end).
+The original assignment instructions can be found in [assignment.md](assignment.md).
 
-The README of the back-end test can be found in [backend-test.md](backend-test.md).
+## Implemented features
 
-## Implemented features (back-end)
+- Display:
 
-See the features previously implemented as part of the `backend-test` branch in [backend-test.md](backend-test.md).
+  - `GET /property/622088210a6f43fca2a1824e8610df03/image`
 
-## Implemented features (front-end)
+- Display Plus:
 
-TODO
+  - `GET /property/622088210a6f43fca2a1824e8610df03/image?parcelOverlay=true&buildingOverlay=true`
+
+- Find:
+
+  - `GET /property?geoJson={"type":"Point","coordinates":[-80.0782213,26.8849731]}&distance=120000`
+
+- Freestyle:
+
+  - Bonus endpoint: Get property (JSON)
+    - `GET /property/622088210a6f43fca2a1824e8610df03`
+  - Bonus endpoint: Find all properties (JSON)
+    - `GET /property`
+  - Bonus Display param: alternate image file type (jpg|png)
+    - `GET /property/622088210a6f43fca2a1824e8610df03/image?fileType=png`
+  - Bonus Display param: resolution (px)
+    - `GET /property/622088210a6f43fca2a1824e8610df03/image?resolution=240`
 
 ## Setup
-
-A single Express app is used to serve both the API and the static front-end files.
-As such, a single Docker image is used for both the back-end and front-end.
 
 You can start Spicy.ai using either of these three methods:
 
@@ -79,9 +88,6 @@ Once the API and database are running, you'll be able to access Spicy.ai from yo
 above:
 
 ```bash
-curl http://localhost:3031/api
+curl http://localhost:3031
 # -> "Spicy.ai API"
-
-curl http://localhost:3031/
-# -> <front-end index.html>
 ```
