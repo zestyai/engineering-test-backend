@@ -9,12 +9,11 @@ const SearchPage = (props: RouteComponentProps) => {
   if (hasSearchQueryParams(queryParams)) {
     try {
       const searchParams: SearchParams = parseSearchQueryParams(queryParams);
-      return <SearchContainer {...searchParams} />;
+      return <SearchContainer searchParams={searchParams} />;
     } catch (error) {
       console.warn('Invalid search query params', queryParams);
     }
   }
-  // props.history.replace('/search');
   return <SearchContainer />;
 };
 
