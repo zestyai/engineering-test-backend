@@ -7,7 +7,7 @@
     "url": "https://pascalgiguere.dev",
     "email": "hello@pascalgiguere.dev"
   },
-  "repository": "https://github.com/pascal-giguere/engineering-test",
+  "repository": "https://github.com/pascal-giguere/spicy.ai",
   "license": "UNLICENSED",
   "scripts": {
     "start": "yarn build && yarn serve",
