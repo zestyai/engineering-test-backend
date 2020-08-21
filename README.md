@@ -1,5 +1,7 @@
 # Spicy.ai - Full Stack
 
+![Screenshot](screenshot.png)
+
 This project is a fork of the [Zesty.ai engineering test](https://github.com/zestyai/engineering-test).
 It's a modified version of the [`backend-test` branch](https://github.com/pascal-giguere/spicy.ai/tree/backend-test)
 that incorporates features from the
@@ -16,7 +18,19 @@ See the features previously implemented as part of the `backend-test` branch in 
 
 ## Implemented features (front-end)
 
-TODO
+- Search
+  - `/search`
+- Save for Later
+  - `/favorites`
+  - Implemented using local storage (no user authentication)
+- Freestyle
+  - Display all properties
+    - `/`
+  - Display fake property names and risk levels
+    - Pseudo-random, deterministic formulas based on property ID, so that the name and risk level are always the same
+      for a given property
+  - Cool logo
+    - Why not?
 
 ## Setup
 
