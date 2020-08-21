@@ -1,6 +1,9 @@
 import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { Header } from '../components/Header';
 
-export const FourOFourPage = (props: RouteComponentProps) => {
-  return <div>404 - Page not found</div>;
-};
+export const FourOFourPage = () => (
+  <div>
+    <Header />
+    404 - Page not found
+  </div>
+);
