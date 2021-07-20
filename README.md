@@ -48,7 +48,7 @@ In the test database, there is a single table called `properties` (with 5 sample
 * *If you are not familiar with [PostgreSQL](https://www.postgresql.org/) or [PostGIS](https://postgis.net/), you may need to read up beforehand.*
 
 ## API Specification
-The API you will be implementing for this project must follow the following API specification:
+The API you will be implementing for this project must adhere to the following API specification:
 
 ### GET /display/:id?(overlay=yes(&parcel=:parcelColor)(&building=:buildingColor))
 
