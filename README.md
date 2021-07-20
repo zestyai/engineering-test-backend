@@ -1,4 +1,4 @@
-# Zesty.ai engineering test (back-end)
+# Zesty.ai Engineering Test (back-end)
 
 - [Background](#background)
 - [Assignment](#assignment)
@@ -47,12 +47,12 @@ In the test database, there is a single table called `properties` (with 5 sample
 ## API Specification
 The API you will be implementing for this project must follow the following API specification:
 
-*** 
-
 ### GET /display/:id?(overlay=yes(&parcel=:parcelColor)(&building=:buildingColor))
 
-*Fetches and displays property tile by ID. Optionally overlays parcel and building geometries on tile.*
+*Fetches and displays property tile by ID. Optionally overlays parcel and building geometries on tile.* 
+
 `example: GET localhost:1235/display/f853874999424ad2a5b6f37af6b56610?overlay=yes&building=green&parcel=orange`
+
 ##### Request Parameters
 - "id" | description: Property ID | type: string | required: true | validation: length greater than 0
 
