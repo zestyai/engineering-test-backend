@@ -1,4 +1,4 @@
-# Zesty.ai Engineering Test (back-end)
+# Zesty.ai Back-End Engineering Test
 
 - [Background](#background)
 - [Assignment](#assignment)
