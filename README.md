@@ -16,21 +16,25 @@ Back-end engineers at Zesty.ai:
 This test is an opportunity for you to demonstrate your comfort with developing back-end services, similar to a day-to-day project you might encounter working on our team.
 
 ## Assignment
-Your goal is to create a RESTful API (see [API Specification](#api-specification)) that can find and manipulate images and geographical data using property data stored in a SQL database and images stored in cloud storage (See [Feature List](#feature-list)). Your API should be packaged as a containerized service (Docker image). A test property database and images are provided for you (see [Setup](#setup)).
+Your goal is to create a RESTful API (see [API Specification](#api-specification)) that can find and manipulate images and geographical data using property data stored in a SQL database and images stored in cloud storage (See [Feature List](#feature-list)). Your API should be packaged as a containerized service. A test property database and images are provided for you (see [Setup](#setup)).
 
 There are several different options for features you can implement in the API. You can pick whichever ones you think you can do best in the time frame allotted.
 
 Note that some features are more difficult than others, and you will be evaluated on more than just the number of features completed. Quality is preferred over quantity. Design, organize, and comment your code as you would a typical production project. Be prepared to explain any decisions you made.
 
 ## Feature list
-* **Display:** API endpoint to display an image by property ID.  Given a *propertyId* as input, find the image URL from the database, download it from Google Cloud Storage and return the binary image as output in a format suitable for browser display.
-* **Find:** API endpoint to search properties within a geographical area.  Take a [GeoJSON](https://geojson.org/) object *geoJson* and a search radius *distance* (in meters) as inputs. Return all property IDs that are within *distance* meters of *geoJson*. Use the `geocode_geo` field of the `property` table for your query.
-* **Display Plus:** Add an option to the first API endpoint (**Display**) to also overlay the parcel and/or buildings (`parcel_geo` and `buildings_geo` fields in the database) on the image.  You can optionally add parameters for the color of each overlay, or use a default for each.
+* **Display:** API endpoint to display an image by property ID.  Given a *propertyId* as input, find the image URL from the database, download it from Google Cloud Storage and return the binary image as output in a format suitable for browser display. 
+  
+* **Find:** API endpoint to search properties within a geographical area.  Take a [GeoJSON](https://geojson.org/) object *geoJson* and a search radius *distance* (in meters) as inputs. Return all property IDs that are within *distance* meters of *geoJson*. Use the `geocode_geo` field of the `property` table for your query. 
+  
+* **Display Plus:** Add an option to the first API endpoint (**Display**) to also overlay the parcel and/or buildings (`parcel_geo` and `buildings_geo` fields in the database) on the image.  You can optionally add parameters for the color of each overlay, or use a default for each. 
+  
 * **Statistics:** API endpoint to calculate geographic data about all properties within a given distance from a reference property. Take *propertyId* and *distance* (in meters) as inputs. The API should return the following:
   * parcel area (meters squared)
   * buildings areas (array, meters squared)
   * buildings distances to center (array, meters).  Distance to center is the distance from the building to the `geocode_geo` field in the property table
-  * zone density (percentage).  Create a "zone" geography, which is a buffer of *distance* meters around the `geocode_geo` point.  Then, calculate the percentage of that zone geography which has buildings in it.
+  * zone density (percentage).  Create a "zone" geography, which is a buffer of *distance* meters around the `geocode_geo` point.  Then, calculate the percentage of that zone geography which has buildings in it. 
+  
 * **Freestyle:**  Based on the other features, you should have a feel for the kind of features this API implements.  If you have other cool ideas of things to add that aren't listed here, we'd love to see them.
 
 ## Setup
