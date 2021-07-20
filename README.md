@@ -1,5 +1,12 @@
 # Zesty.ai engineering test (back-end)
 
+- [Background](#background)
+- [Assignment](#assignment)
+- [Feature List](#feature-list)
+- [Setup](#setup)
+- [API Specification](#api-specification)
+- [Submission Instructions](#submission-instructions)
+
 ## Background
 Back-end engineers at Zesty.ai design high-performance, reliable, cloud-native distributed systems, work with many kinds of data and imagery, and build/extend Zesty.ai’s platform, services, and internal tools. 
 
