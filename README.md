@@ -8,12 +8,15 @@
 - [Submission Instructions](#submission-instructions)
 
 ## Background
-Back-end engineers at Zesty.ai design high-performance, reliable, cloud-native distributed systems, work with many kinds of data and imagery, and build/extend Zesty.ai’s platform, services, and internal tools. 
+Back-end engineers at Zesty.ai:
+- design high-performance, reliable, cloud-native distributed systems
+- work with many kinds of data and imagery, and
+- build/extend Zesty.ai’s platform, services, and internal tools. 
 
 This test is an opportunity for you to demonstrate your comfort with developing back-end services, similar to a day-to-day project you might encounter working on our team.
 
 ## Assignment
-Your goal is to create a RESTful API  that can find and manipulate images and geographical data, using property data stored in a SQL database, and images stored in cloud storage. Your API should be packaged as a containerized service (Docker image). A test property database and images are provided for you.
+Your goal is to create a RESTful API (see [API Specification](#api-specification)) that can find and manipulate images and geographical data using property data stored in a SQL database and images stored in cloud storage (See [Feature List](#feature-list)). Your API should be packaged as a containerized service (Docker image). A test property database and images are provided for you (see [Setup](#setup)).
 
 There are several different options for features you can implement in the API. You can pick whichever ones you think you can do best in the time frame allotted.
 
