@@ -8,17 +8,17 @@
 - [Submission Instructions](#submission-instructions)
 
 ## Background
-Back-end engineers at Zesty.ai:
+At Zesty.ai, Back-end engineers:
 - design high-performance, reliable, cloud-native distributed systems
 - work with many kinds of data and imagery, and
-- build/extend Zesty.ai’s platform, services, and internal tools. 
+- build and extend Zesty.ai’s platform, services, and internal tools. 
 
-This test is an opportunity for you to demonstrate your comfort with developing back-end services, similar to a day-to-day project you might encounter working on our team.
+This test is an opportunity for you to demonstrate your skills and comfort with developing back-end services, similar to a day-to-day project you might encounter working on our team.
 
 ## Assignment
-Your goal is to create a RESTful API (see [API Specification](#api-specification)) written in Python that can find and manipulate images and geographical data using property data stored in a SQL database and images stored in cloud storage (See [Feature List](#feature-list)). Your API should be packaged as a containerized service. A test property database and images are provided for you (see [Setup](#setup)).
+Your goal is to create a RESTful API (see [API Specification](#api-specification)) written in Python that can locate and manipulate images and geographical data. You'll use property data stored in a SQL database and images stored in cloud storage (See [Feature List](#feature-list)). Your API should be packaged as a containerized service. A test property database and images are provided for you (see [Setup](#setup)).
 
-There are several different options for features you can implement in the API. You can pick whichever ones you think you can do best in the time frame allotted.
+There are several options for features you can implement in your API. You can pick whichever ones you think you can do best in the time frame allotted.
 
 Note that some features are more difficult than others, and you will be evaluated on more than just the number of features completed. Quality is preferred over quantity. Design, organize, and comment your code as you would a typical production project. Be prepared to explain any decisions you made.
 
