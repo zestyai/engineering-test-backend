@@ -18,12 +18,10 @@ This test is an opportunity for you to demonstrate your skills and comfort with 
 ## Assignment
 Your goal is to create a RESTful API (see [API Specification](#api-specification)) written in Python that can locate and manipulate images and geographical data. You'll use property data stored in a SQL database and images stored in cloud storage (See [Feature List](#feature-list)). Your API should be packaged as a containerized service. A test property database and images are provided for you (see [Setup](#setup)).
 
-There are several options for features you can implement in your API. You can pick whichever ones you think you can do best in the time frame allotted.
-
 Note that some features are more difficult than others, and you will be evaluated on more than just the number of features completed. Quality is preferred over quantity. Design, organize, and comment your code as you would a typical production project. Be prepared to explain any decisions you made.
 
 ## Feature list
-* **Display:** API endpoint to display an image by property ID.  Given a *propertyId* as input, find the image URL from the database, download it from Google Cloud Storage and return the binary image as output in a format suitable for browser display. 
+* **Display:** API endpoint to display an image by property ID.  Given a *propertyId* as input, find the image URL from the database, download it from Google Cloud Storage and return a JPEG image. 
   
 * **Find:** API endpoint to search properties within a geographical area.  Take a [GeoJSON](https://geojson.org/) object *geoJson* and a search radius *distance* (in meters) as inputs. Return all property IDs that are within *distance* meters of *geoJson*. Use the `geocode_geo` field of the `property` table for your query. 
   
