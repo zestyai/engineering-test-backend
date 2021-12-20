@@ -6,6 +6,7 @@
 - [Setup](#setup)
 - [API Specification](#api-specification)
 - [Submission Instructions](#submission-instructions)
+- [FAQ](#faq)
 
 ## Background
 At Zesty.ai, Back-end engineers:
@@ -13,7 +14,12 @@ At Zesty.ai, Back-end engineers:
 - work with many kinds of data and imagery, and
 - build and extend Zesty.ai’s platform, services, and internal tools. 
 
-This test is an opportunity for you to demonstrate your skills and comfort with developing back-end services, similar to a day-to-day project you might encounter working on our team.
+This test is an opportunity for you to demonstrate your skills and comfort with developing back-end services as well addressing difficult unknown problems.
+The content of this test is designed to cover challenges that are very similar to real ones you would encounter working at zesty.ai (rather than random
+abstract computer-science projects).  This "test" should be challenging, but also fun. It meant to also help you evaluate if you would enjoy
+the kind of problems you might face on our team. 
+
+
 
 ## Assignment
 Your goal is to create a RESTful API (see [API Specification](#api-specification)) written in Python that can locate and manipulate images and geographical data. You'll use property data stored in a SQL database and images stored in cloud storage (See [Feature List](#feature-list)). Your API should be packaged as a containerized service. A test property database and images are provided for you (see [Setup](#setup)).
@@ -25,102 +31,159 @@ Note that some features are more difficult than others, and you will be evaluate
   
 * **Find:** API endpoint to search properties within a geographical area.  Take a [GeoJSON](https://geojson.org/) object *geoJson* and a search radius *distance* (in meters) as inputs. Return all property IDs that are within *distance* meters of *geoJson*. Use the `geocode_geo` field of the `property` table for your query. 
   
-* **Display Plus:** Add an option to the first API endpoint (**Display**) to also overlay the parcel and/or buildings (`parcel_geo` and `buildings_geo` fields in the database) on the image.  You can optionally add parameters for the color of each overlay, or use a default for each. 
+* **Display Plus:** An alternative version of first API endpoint (**Display**) to also overlay the geocode (as a marker - such as a small circle or triangle), parcel, and/or building (`geocode_geo`, `parcel_geo`, and `building_geo` fields in the database, respectively) on the image.  You can optionally add parameters for the color of each overlay, or use a default for each. 
   
 * **Statistics:** API endpoint to calculate geographic data about all properties within a given distance from a reference property. Take *propertyId* and *distance* (in meters) as inputs. The API should return the following:
   * parcel area (meters squared)
-  * buildings areas (array, meters squared)
-  * buildings distances to center (array, meters).  Distance to center is the distance from the building to the `geocode_geo` field in the property table
+  * building area (meters squared)
+  * building distance to center (meters).  Distance to center is the distance from the building to the `geocode_geo` field in the property table
   * zone density (percentage).  Create a "zone" geography, which is a buffer of *distance* meters around the `geocode_geo` point.  Then, calculate the percentage of that zone geography which has buildings in it. 
   
 * **Freestyle:**  Based on the other features, you should have a feel for the kind of features this API implements.  If you have other cool ideas of things to add that aren't listed here, we'd love to see them.
 
+
 ## Setup
 ### Development environment requirements
 
-You will need to install [Docker](https://www.docker.com/products/docker-desktop) and [`docker-compose`](https://docs.docker.com/compose/install/) to run the example database.
+You will need to install docker and [`docker-compose`](https://docs.docker.com/compose/install/) to run the example database.
 
-Your code should be in Python 3.x.  If you want to run/test your project locally, you of course can, but ultimately, your API should be made available as a Docker image.
+Your code should be in Python 3.x.  If you want to run/test your project locally, you of course can, but ultimately, your API should be made available as a docker image.
 
 ### Database startup
 From the repo root folder, run `docker-compose up -d` to start the PostgreSQL database needed for this example.  The database server will be exposed on port **5555**.  If this port is not available on your computer, feel free to change the port in the `docker-compose.yml` file.
 
 In the test database, there is a single table called `properties` (with 5 sample rows), where each row represents a property or address.  There are three geography* fields and one field with an image URL pointing to an image on [Google Cloud Storage](https://cloud.google.com/storage/).
 
-* *If you are not familiar with [PostgreSQL](https://www.postgresql.org/) or [PostGIS](https://postgis.net/), you may need to read up beforehand.*
+*If you are not familiar with [PostgreSQL](https://www.postgresql.org/) or [PostGIS](https://postgis.net/), you may need to read up beforehand.*
+
 
 ## API Specification
-The API you will be implementing for this project must adhere to the following API specification:
+The API you will be implementing for this project must adhere to the following API specification.
 
-### GET /display/:id?(overlay=yes(&parcel=:parcelColor)(&building=:buildingColor))
+Note, that this includes specification for all endpoints.  You may ignore the ones for features that you do not implement.
 
-*Fetches and displays property tile by ID. Optionally overlays parcel and building geometries on tile.* 
+***
 
-`example: GET localhost:1235/display/f853874999424ad2a5b6f37af6b56610?overlay=yes&building=green&parcel=orange`
+### GET /display/:id
+
+*Fetches and displays property image (as JPEG) by ID* 
+
+`example: GET localhost:1235/display/f853874999424ad2a5b6f37af6b56610`
 
 ##### Request Parameters
-- "id" | description: Property ID | type: string | required: true | validation: length greater than 0
-
-- "overlay" | description: Overlays parcel and building geometries on tile | type: string | required: false | validation: enum("yes")
-
-- "parcel" | description: Indicated building overlay color | type: string | required: false | validation: enum() ex. "red", "green", "orange"
-
-- "building" | description: Indicates building overlay color | type: string | required: false | validation: enum() ex. "red", "green", "orange"
+- `id` | description: Property ID | type: string | required: true 
 
 ##### Response
 JPEG image
 
 ***
+
+
 ### POST /find
 *Finds properties within X meters away from provided geojson point.*
 
 `example: POST localhost:1235/find`
 
 ##### Request Body
-- geojson object with x-distance property
+JSON object with following properties
+
+- `location` | geojson object representing point to search from | required: true | validation: geojson | type: object
+
+- `distance` | distance, in meters, to search from `location` | required: true | validation: greater than 0, less than some reasonable number | type: float
 
 ```
 example:
 
 {
-  "type": "Feature",
-  "geometry": {
-  "type": "Point",
-  "coordinates": [-80.0782213, 26.8849731]
+  "location": {
+    "type": "Point",
+    "coordinates": [-80.0782213, 26.8849731]
   },
-  "x-distance": 1755000
+  "distance": 500
 }
 ```
 
 ##### Response
-JSON array of property IDs
+JSON array with objects containing at least the following fields (you may include more if you think they be helpful)
+- `property_id` | ID of property object
+- `distance_m` | actual distance from input `distance`
 
 ***
-### GET /statistics/:id?distance=:distance
+
+### GET /display/:id/overlays(?parcel_color&building_color)
+
+*Fetches and displays property image (as JPEG) by ID, with feature overlays drawn on image*
+
+`example: GET localhost:1235/display/f853874999424ad2a5b6f37af6b56610/overlays?building=green&parcel=orange`
+
+##### Request Parameters
+- `id` | description: Property ID | type: string | required: true
+
+- `geocode_color` | description: color to use for geocode overlay. empty to use default color (default should be different from other feature defaults) | type: string | required: false | validation: enum (ex. "red", "green", "orange") or hex string (ex: "FF0040")
+
+- `parcel_color` | description: color to use for parcel overlay. empty to use default color (default should be different from other feature defaults) | type: string | required: false | validation: enum (ex. "red", "green", "orange") or hex string (ex: "FF0040")
+
+- `building_color` | description: color building overlay. empty to use default color (default should be different from other feature defaults) | type: string | required: false | validation: enum() ex. "red", "green", "orange"
+
+##### Response
+JPEG image
+
+***
+
+### GET /statistics/:id?zone_size_m
 
 *Returns various statistics for parcels and buildings found X meters around the requested property*
 
-`example: GET localhost:1235/statistics/f853874999424ad2a5b6f37af6b56610?distance=1755000`
+`example: GET localhost:1235/statistics/f853874999424ad2a5b6f37af6b56610?zone_size_m=10`
 
 ##### Request Parameters
 
-- "id" | description: Property ID | type: string | required: true | validation: length greater than 0
+- `id` | description: Property ID | type: string | required: true | validation: length greater than 0
 
-- "distance" | description: Buffer distance | type: integer | required: true | validation: greater than 0
+- `zone_size_m` | description: Buffer distance used for calculating zones | type: integer | required: true | validation: greater than 0
 
 ##### Response
-JSON array including
-- "parcel_area_sqm" | description: Total area of the property's parcel, in square meters | type: float
+JSON object including following fields
+- `parcel_area_sqm` | description: total area of the property's parcel, in square meters | type: float
 
-- "building_area_sqm" | description: Total area of buildings inside the property's parcel, in square meters | type: float
+- `building_area_sqm` | description: total area of building, in square meters | type: float
 
-- "building_distances_m" | description: Array of [distance, from the centroid of the property, to the centroid of each building, in meters] | type: List[float]
+- `building_distance_m` | description: distance from the centroid of the property, to the centroid of building, in meters | type: float
 
-- "zone_density" | description: Array of [density of each building's area as a ratio to parcel area, dimensionless] | type: List[float]
+- `zone_density` | description: density (%) of building's area to zone area (the zone is the `geocode_geo` with a buffer/circle with the radius of `zone_size_m` input) |
+ type: float
+
 ***
+
 ## Submission instructions
 
 Send us your completed application's code by email, or create and give us access to a new private GitHub repository.
 
 Include instructions on how to run your app, and a list of what features you implemented. Add any comments or things you want the reviewer to consider when looking at your submission. You don't need to be too detailed, as there will likely be a review done with you where you can explain what you've done.
 
+## FAQ
+
+#### How long to spend on this test?
+There is intentionally no time limit set on this test. Spend as much time as you feel
+you need to create a deliverable you are proud of.
+
+#### Ugh, this test is long. Why?
+It is very likely that some of the technologies might be new to you (such as PostGIS) and may require some research. If that is the case, this time would
+not be wasted, as all of the technologies on this test are used frequently at zesty.ai.  It is not required that you complete all features on the test -
+spend as much time as you feel is needed to demonstrate your mastery of complex technologies.  Our hiring process is heavily weighted on quantifiable data,
+and we view this test as a good way for you to show off.  **Almost every person who completed this test in its entirety has been hired, and many have been hired
+who completed only 50% of it.**
+
+On the flip-side, if this test feels burdensome, it's very likely you would not enjoy the work at zesty.ai.
+
+#### I don't understand something or I am stuck. Can I ask questions?
+Yes. Knowing when to ask for help is a skill that is equally important as being able to solve things yourself.
+
+#### I have some cool personal projects I have done. Can I submit that instead of the test?
+Sure. As long as the projects adequately demonstrate your technical prowess. We will evaluate such
+submissions and let you know if we still need anything further.
+
+#### I would like to know more about zesty before committing to working on such a test
+We think zesty has a lot to offer engineers with the exciting work we do and cutting-edge technologies we use in the process.
+We would be happy to schedule time to talk to one of our engineers to give you more details and let you ask
+questions before you start the test.
