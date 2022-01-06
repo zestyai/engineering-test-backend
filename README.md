@@ -14,10 +14,10 @@ At Zesty.ai, Back-end engineers:
 - work with many kinds of data and imagery, and
 - build and extend Zesty.ai’s platform, services, and internal tools. 
 
-This test is an opportunity for you to demonstrate your skills and comfort with developing back-end services as well addressing difficult unknown problems.
-The content of this test is designed to cover challenges that are very similar to real ones you would encounter working at zesty.ai (rather than random
-abstract computer-science projects).  This "test" should be challenging, but also fun. It meant to also help you evaluate if you would enjoy
-the kind of problems you might face on our team. 
+This test is an opportunity for you to demonstrate your skills and comfort with developing back-end services as well as addressing difficult unknown problems.
+The content of this test is designed to cover challenges that are very similar to real ones you would encounter working at Zesty.ai.
+This "test" should be challenging, but also fun. It meant to also help you evaluate if you would enjoy
+the kind of problems you might face working on our stack. 
 
 
 
@@ -31,7 +31,7 @@ Note that some features are more difficult than others, and you will be evaluate
   
 * **Find:** API endpoint to search properties within a geographical area.  Take a [GeoJSON](https://geojson.org/) object *geoJson* and a search radius *distance* (in meters) as inputs. Return all property IDs that are within *distance* meters of *geoJson*. Use the `geocode_geo` field of the `property` table for your query. 
   
-* **Display Plus:** An alternative version of first API endpoint (**Display**) to also overlay the geocode (as a marker - such as a small circle or triangle), parcel, and/or building (`geocode_geo`, `parcel_geo`, and `building_geo` fields in the database, respectively) on the image.  You can optionally add parameters for the color of each overlay, or use a default for each. 
+* **Display Plus:** An alternative version of the first API endpoint (**Display**) to also overlay the geocode (as a marker - such as a small circle or triangle), parcel, and/or building (`geocode_geo`, `parcel_geo`, and `building_geo` fields in the database, respectively) on the image.  You can optionally add parameters for the color of each overlay, or use a default for each. 
   
 * **Statistics:** API endpoint to calculate geographic data about all properties within a given distance from a reference property. Take *propertyId* and *distance* (in meters) as inputs. The API should return the following:
   * parcel area (meters squared)
@@ -45,12 +45,12 @@ Note that some features are more difficult than others, and you will be evaluate
 ## Setup
 ### Development environment requirements
 
-You will need to install docker and [`docker-compose`](https://docs.docker.com/compose/install/) to run the example database.
+You will need to install docker to run the example database.
 
-Your code should be in Python 3.x.  If you want to run/test your project locally, you of course can, but ultimately, your API should be made available as a docker image.
+Your code should be in Python 3.x.  If you want to run/test your project locally, you of course can, but ultimately, your API should be made available as a Docker image.
 
 ### Database startup
-From the repo root folder, run `docker-compose up -d` to start the PostgreSQL database needed for this example.  The database server will be exposed on port **5555**.  If this port is not available on your computer, feel free to change the port in the `docker-compose.yml` file.
+From the repo root folder, run `docker compose up -d` to start the PostgreSQL database needed for this example.  The database server will be exposed on port **5555**.  If this port is not available on your computer, feel free to change the port in the `docker-compose.yml` file.
 
 In the test database, there is a single table called `properties` (with 5 sample rows), where each row represents a property or address.  There are three geography* fields and one field with an image URL pointing to an image on [Google Cloud Storage](https://cloud.google.com/storage/).
 
@@ -60,7 +60,7 @@ In the test database, there is a single table called `properties` (with 5 sample
 ## API Specification
 The API you will be implementing for this project must adhere to the following API specification.
 
-Note, that this includes specification for all endpoints.  You may ignore the ones for features that you do not implement.
+Note that this includes the specification for all endpoints. You may ignore the ones for features that you do not implement.
 
 ***
 
@@ -85,7 +85,7 @@ JPEG image
 `example: POST localhost:1235/find`
 
 ##### Request Body
-JSON object with following properties
+JSON object with the following properties
 
 - `location` | geojson object representing point to search from | required: true | validation: geojson | type: object
 
@@ -104,7 +104,7 @@ example:
 ```
 
 ##### Response
-JSON array with objects containing at least the following fields (you may include more if you think they be helpful)
+JSON array with objects containing at least the following fields (you may include more if you think they would be helpful)
 - `property_id` | ID of property object
 - `distance_m` | actual distance from input `distance`
 
@@ -166,15 +166,6 @@ Include instructions on how to run your app, and a list of what features you imp
 #### How long to spend on this test?
 There is intentionally no time limit set on this test. Spend as much time as you feel
 you need to create a deliverable you are proud of.
-
-#### Ugh, this test is long. Why?
-It is very likely that some of the technologies might be new to you (such as PostGIS) and may require some research. If that is the case, this time would
-not be wasted, as all of the technologies on this test are used frequently at zesty.ai.  It is not required that you complete all features on the test -
-spend as much time as you feel is needed to demonstrate your mastery of complex technologies.  Our hiring process is heavily weighted on quantifiable data,
-and we view this test as a good way for you to show off.  **Almost every person who completed this test in its entirety has been hired, and many have been hired
-who completed only 50% of it.**
-
-On the flip-side, if this test feels burdensome, it's very likely you would not enjoy the work at zesty.ai.
 
 #### I don't understand something or I am stuck. Can I ask questions?
 Yes. Knowing when to ask for help is a skill that is equally important as being able to solve things yourself.
