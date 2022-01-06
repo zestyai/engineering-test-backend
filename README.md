@@ -39,7 +39,7 @@ Note that some features are more difficult than others, and you will be evaluate
   * building distance to center (meters).  Distance to center is the distance from the building to the `geocode_geo` field in the property table
   * zone density (percentage).  Create a "zone" geography, which is a buffer of *distance* meters around the `geocode_geo` point.  Then, calculate the percentage of that zone geography which has buildings in it. 
   
-* **Freestyle:**  Based on the other features, you should have a feel for the kind of features this API implements.  If you have other cool ideas of things to add that aren't listed here, we'd love to see them.
+* **Freestyle:**  Based on the other features, you should have a feel for the kind of features this API implements. If you have other cool ideas of things to add that aren't listed here, we'd love to see them.
 
 
 ## Setup
