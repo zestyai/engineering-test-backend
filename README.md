@@ -31,7 +31,7 @@ Note that some features are more difficult than others, and you will be evaluate
   
 * **Find:** API endpoint to search properties within a geographical area.  Take a [GeoJSON](https://geojson.org/) object *geoJson* and a search radius *distance* (in meters) as inputs. Return all property IDs that are within *distance* meters of *geoJson*. Use the `geocode_geo` field of the `property` table for your query. 
   
-* **Display Plus:** An alternative version of the first API endpoint (**Display**) to also overlay the geocode (as a marker - such as a small circle or triangle), parcel, and/or building (`geocode_geo`, `parcel_geo`, and `building_geo` fields in the database, respectively) on the image.  You can optionally add parameters for the color of each overlay, or use a default for each. 
+* **Display Plus:** An alternative version of the first API endpoint (**Display**) to also overlay the geocode (as a marker - such as a small circle or triangle), parcel, and/or building (`geocode_geo`, `parcel_geo`, and `building_geo` fields in the database, respectively) on the image. You can optionally add parameters for the color of each overlay, or use a default for each. 
   
 * **Statistics:** API endpoint to calculate geographic data about all properties within a given distance from a reference property. Take *propertyId* and *distance* (in meters) as inputs. The API should return the following:
   * parcel area (meters squared)
