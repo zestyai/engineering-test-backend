@@ -13,44 +13,70 @@ At Zesty.ai, Back-end engineers:
 - work with many kinds of data and imagery, and
 - build and extend Zesty.ai’s platform, services, and internal tools. 
 
-This test is an opportunity for you to demonstrate your skills and comfort with developing back-end services, similar to a day-to-day project you might encounter working on our team.
+This test is an opportunity to demonstrate comfort and skills with developing back-end services, 
+similar to a day-to-day project on our team.
 
 ## Assignment
-Your goal is to create a RESTful API (see [API Specification](#api-specification)) written in Python that can locate and manipulate images and geographical data. You'll use property data stored in a SQL database and images stored in cloud storage (See [Feature List](#feature-list)). Your API should be packaged as a containerized service. A test property database and images are provided for you (see [Setup](#setup)).
+Your goal is to create a RESTful API (see [API Specification](#api-specification)) written in 
+Python that can locate and manipulate images and geographical data. You'll use property data 
+stored in an SQL database and images stored in cloud storage (See [Feature List](#feature-list)). 
+Your API should be packaged as a containerized service. A test property database and images are 
+provided for you (see [Setup](#setup)).
 
-Note that some features are more difficult than others, and you will be evaluated on more than just the number of features completed. Quality is preferred over quantity. Design, organize, and comment your code as you would a typical production project. Be prepared to explain any decisions you made.
+Note that some features are more difficult than others, and you will be evaluated on more than 
+just the number of features completed. Quality is preferred over quantity. Design, organize, 
+and comment your code as you would a typical production project. Be prepared to explain any decisions you made.
 
 ## Feature list
-* **Display:** API endpoint to display an image by property ID.  Given a *propertyId* as input, find the image URL from the database, download it from Google Cloud Storage and return a JPEG image. 
+* **Display:** API endpoint to display an image by property ID . Given a *propertyId* as input, 
+  find the image URL from the database, download it from Google Cloud Storage and return a JPEG image. 
   
-* **Find:** API endpoint to search properties within a geographical area.  Take a [GeoJSON](https://geojson.org/) object *geoJson* and a search radius *distance* (in meters) as inputs. Return all property IDs that are within *distance* meters of *geoJson*. Use the `geocode_geo` field of the `property` table for your query. 
+* **Find:** API endpoint to search properties within a geographical area. 
+  Take a [GeoJSON](https://geojson.org/) object *geoJson* and a search radius *distance* 
+  (in meters) as inputs. Return all property IDs that are within *distance* 
+  meters of *geoJson*. Use the `geocode_geo` field in the `property` table for the query. 
   
-* **Display Plus:** Add an option to the first API endpoint (**Display**) to also overlay the parcel and/or buildings (`parcel_geo` and `buildings_geo` fields in the database) on the image.  You can optionally add parameters for the color of each overlay, or use a default for each. 
+* **Display Plus:** Add an option to the first API endpoint (**Display**) to also 
+  overlay the parcel and/or buildings (`parcel_geo` and `buildings_geo` fields in the database) 
+  on the image. Optionally, add parameters for the color of each overlay, or use a default for each. 
   
-* **Statistics:** API endpoint to calculate geographic data about all properties within a given distance from a reference property. Take *propertyId* and *distance* (in meters) as inputs. The API should return the following:
+* **Statistics:** API endpoint to calculate geographic data about all properties within 
+  a given distance from a reference property. Take *propertyId* and *distance* (in meters) 
+  as inputs. The API should return the following:
   * parcel area (meters squared)
   * buildings areas (array, meters squared)
-  * buildings distances to center (array, meters).  Distance to center is the distance from the building to the `geocode_geo` field in the property table
-  * zone density (percentage).  Create a "zone" geography, which is a buffer of *distance* meters around the `geocode_geo` point.  Then, calculate the percentage of that zone geography which has buildings in it. 
+  * building distances to center (array, meters) . Distance to center is the 
+    distance from the building to the `geocode_geo` field in the property table
+  * zone density (percentage) . Create a "zone" geography, which is a buffer of *distance*
+    meters around the `geocode_geo` point . Then, calculate the percentage of 
+    that zone geography which has buildings in it. 
   
-* **Freestyle:**  Based on the other features, you should have a feel for the kind of features this API implements.  If you have other cool ideas of things to add that aren't listed here, we'd love to see them.
+* **Freestyle:**  Based on the other features, you should have a feel for the kind of 
+  features this API implements . If you have other cool ideas of things to add that aren't 
+  listed here, we'd love to see them.
 
 ## Setup
 ### Development environment requirements
 
-You will need to install [Docker](https://www.docker.com/products/docker-desktop) and [`docker-compose`](https://docs.docker.com/compose/install/) to run the example database.
+Install [Docker](https://www.docker.com/products/docker-desktop) 
+and [`docker-compose`](https://docs.docker.com/compose/install/) to run the example database.
 
-Your code should be in Python 3.x.  If you want to run/test your project locally, you of course can, but ultimately, your API should be made available as a Docker image.
+The deliverable should be in Python 3.x and be made available as a Docker image.
 
 ### Database startup
-From the repo root folder, run `docker-compose up -d` to start the PostgreSQL database needed for this example.  The database server will be exposed on port **5555**.  If this port is not available on your computer, feel free to change the port in the `docker-compose.yml` file.
+From the repo root folder, run `docker-compose up -d` to start the PostgreSQL database needed for this example. 
+The database server will be exposed on port **5555** . If this port conflicts with another service, 
+feel free to change the port in the `docker-compose.yml` file.
 
-In the test database, there is a single table called `properties` (with 5 sample rows), where each row represents a property or address.  There are three geography* fields and one field with an image URL pointing to an image on [Google Cloud Storage](https://cloud.google.com/storage/).
+In the test database, there is a single table called `properties` (with 5 sample rows), where 
+each row represents a property or address . There are three *geography* fields and one field with 
+an image URL pointing to an image on [Google Cloud Storage](https://cloud.google.com/storage/).
 
-* *If you are not familiar with [PostgreSQL](https://www.postgresql.org/) or [PostGIS](https://postgis.net/), you may need to read up beforehand.*
+* *If you are not familiar with [PostgreSQL](https://www.postgresql.org/) or [PostGIS](https://postgis.net/),
+  please read up beforehand.*
 
 ## API Specification
-The API you will be implementing for this project must adhere to the following API specification:
+The API for this project must adhere to the following API specification:
 
 ### GET /display/:id?(overlay=yes(&parcel=:parcelColor)(&building=:buildingColor))
 
@@ -118,9 +144,13 @@ JSON array including
 
 - "zone_density" | description: Array of [density of each building's area as a ratio to parcel area, dimensionless] | type: List[float]
 ***
+
 ## Submission instructions
 
-Send us your completed application's code by email, or create and give us access to a new private GitHub repository.
+Send us the completed application's code by email, or create and provide access to a new private GitHub repository.
 
-Include instructions on how to run your app, and a list of what features you implemented. Add any comments or things you want the reviewer to consider when looking at your submission. You don't need to be too detailed, as there will likely be a review done with you where you can explain what you've done.
+Include instructions on how to run the app, and a list of what features were implemented. 
+Add any comments or things for the reviewer to consider when looking at the submission. 
+No need to be too detailed; there will likely be a review done during the in-person interview where we can 
+expand on the implementation.
 
