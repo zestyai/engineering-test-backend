@@ -170,17 +170,36 @@ JSON object including following fields
 
 ## Submission instructions
 
-Email the completed application's code, or create and provide access to a new private GitHub repository.
+Send us your completed application's code by email, or create and give us access to a new private GitHub repository.
 
-Include instructions on how to run the app, and a list of the implemented features. 
-Add comments for the reviewer to consider when looking at the submission. No need to be too detailed, 
-as we'll go over the implementation during the in-person interview.
+Include instructions on how to run your app, and a list of what features you implemented. Add any comments or things you
+want the reviewer to consider when looking at your submission. You don't need to be too detailed, as there will likely
+be a review done with you where you can explain what you've done.
+
+## Scoring
+
+Your submission will be scored out of 100 using the following scorecard:
+
+|      **Feature**      | **Max score** |
+|:---------------------:|:-------------:|
+|  List all properties  |      15       |
+|  Property detail page |      15       |
+| Search by coordinates |      20       |
+|     Image overlays    |      20       |
+|    Containerization   |      10       |
+|         Extras        |      20       |
+|       **Total**       |    **100**    |
+
+Note that the points attributed to each feature are not all-or-nothing. Partial points will be attributed for incomplete
+features. If you can't complete a feature, you're still encouraged to submit code that shows signs of your progress.
+It's possible to get a passing grade without implementing all features, as quality is preferred over quantity. Extra
+points will be given for going above expectations quality-wise.
 
 ## FAQ
 
 #### How long to spend on this test?
 There is intentionally no time limit set on this test. Spend as much time as you feel
-you need to create a deliverable you are proud of.
+you need to create a deliverable you are proud of, but like in a real project make sure to balance value and effort.
 
 #### I don't understand something or I am stuck. Can I ask questions?
 Yes. Knowing when to ask for help is a skill that is equally important as being able to solve things yourself.
@@ -190,6 +209,6 @@ Sure. As long as the projects adequately demonstrate your technical prowess. We 
 submissions and let you know if we still need anything further.
 
 #### I would like to know more about zesty before committing to working on such a test
-We think zesty has a lot to offer. We do exciting work and use cutting-edge technologies.
+We think Zesty.ai has a lot to offer. We do exciting work and use cutting-edge technologies.
 We would be happy to schedule time to talk to one of our engineers to give you more details and let you ask
 questions before you start the test.
