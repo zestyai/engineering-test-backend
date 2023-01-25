@@ -178,22 +178,22 @@ be a review done with you where you can explain what you've done.
 
 ## Scoring
 
-Your submission will be scored out of 100 using the following scorecard:
+Your submission will be scored out of 150 using the following scorecard:
 
-|      **Feature**      | **Max score** |
-|:---------------------:|:-------------:|
-|  List all properties  |      15       |
-|  Property detail page |      15       |
-| Search by coordinates |      20       |
-|     Image overlays    |      20       |
-|    Containerization   |      10       |
-|         Extras        |      20       |
-|       **Total**       |    **100**    |
+|   **Feature**    | **Max score** |
+|:----------------:|:-------------:|
+|     Display      |      10       |
+|       Find       |      20       |
+|   Display Plus   |      40       |
+|    Statistics    |      40       |
+|    Freestyle     |      20       |
+| Containerization |      20       |
+|    **Total**     |    **150**    |
 
 Note that the points attributed to each feature are not all-or-nothing. Partial points will be attributed for incomplete
 features. If you can't complete a feature, you're still encouraged to submit code that shows signs of your progress.
 It's possible to get a passing grade without implementing all features, as quality is preferred over quantity. Extra
-points will be given for going above expectations quality-wise.
+points, not included in table above, will be given for going above expectations quality-wise .
 
 ## FAQ
 
